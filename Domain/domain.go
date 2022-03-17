@@ -13,9 +13,6 @@ import (
 
 var lock = &sync.Mutex{}
 
-type single struct {
-}
-
 var Err error
 var Client *mongo.Client
 var Ctx context.Context
