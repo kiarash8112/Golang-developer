@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package read;
+
+option go_package = "readpb/";
+
+message getUserRequest {
+    int32 id=1;
+    bool all=2;
+}
+message getUserResponse {
+    string   Name      =1;  	
+    string   Gender    =2;
+	string   Birthday  =3;
+	string   Avatar    =4;
+    repeated Card card = 5;
+}
+message getCardRequest {
+    int32 id=1;
+
+}
+message getCardResponse {
+    repeated Card card=1;
+}
+message Card {
+    string BankName = 1;
+    string serial = 2;
+}
+service crudService {
+    
+    rpc getUser(getUserRequest) returns (stream getUserResponse) {};
+    rpc getCard(getCardRequest) returns (getCardResponse) {};
+
+}

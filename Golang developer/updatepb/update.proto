@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package update;
+
+option go_package = "updatepb/";
+
+
+message updateUserRequest {
+    int32 Id=7;
+    string   Name      =1;  	
+    string   Gender    =2;
+	string   Birthday  =3;
+	string   Avatar    =4;
+}
+message updateCardRequest {
+    int32    Id=7;
+    string   Bank_name      =1;  	
+    string   serial    =2;
+}
+message updateResponse {
+    string result =1;
+}
+
+
+service crudService {
+
+    rpc updateUser(updateUserRequest) returns (updateResponse){};
+    rpc updateCard(updateCardRequest) returns (updateResponse){};
+ 
+}

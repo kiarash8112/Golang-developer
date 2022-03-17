@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package delete;
+
+option go_package = "deletepb/";
+
+
+
+
+message deleteUserRequest {
+    int32 Id =1;
+}
+message deleteCardRequest {
+    int32 Id =1;
+}
+message deleteResponse {
+    string result =1;
+}
+
+
+
+service crudService {
+    rpc deleteUser(deleteUserRequest) returns (deleteResponse){};
+    rpc deleteCard(deleteCardRequest) returns (deleteResponse){};
+}

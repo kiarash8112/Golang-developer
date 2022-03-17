@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package put;
+
+option go_package = "putpb/";
+
+
+
+message createUserRequest {
+    int32    Id=7;
+    string   Name      =1;  	
+    string   Gender    =2;
+	string   Birthday  =3;
+	string   Avatar    =4;
+}
+
+
+
+message createCardRequest {
+    int32 user_id =2;
+    string Bankname = 1;
+    string serial =3;
+}
+
+message createResponse {
+    string result =1;
+}
+
+service crudService {
+
+    rpc createUser(createUserRequest) returns (createResponse){};
+    rpc createCard(createCardRequest) returns (createResponse){};
+ 
+}
