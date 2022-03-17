@@ -9,8 +9,8 @@ message updateUserRequest {
     int32    Id        =1;
     string   Name      =2;  	
     string   Gender    =3;
-	string   Birthday  =4;
-	string   Avatar    =5;
+    string   Birthday  =4;
+    string   Avatar    =5;
 }
 message updateCardRequest {
     int32    Id        =1;
