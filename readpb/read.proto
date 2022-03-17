@@ -11,8 +11,8 @@ message getUserRequest {
 message getUserResponse {
     string   Name      =1;  	
     string   Gender    =2;
-    string   Birthday  =3;
-    string   Avatar    =4;
+	string   Birthday  =3;
+	string   Avatar    =4;
     repeated Card card = 5;
 }
 message getCardRequest {

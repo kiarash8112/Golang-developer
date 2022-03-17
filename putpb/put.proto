@@ -7,18 +7,18 @@ option go_package = "putpb/";
 
 
 message createUserRequest {
-    int32    Id=7;
-    string   Name      =1;  	
-    string   Gender    =2;
-	string   Birthday  =3;
-	string   Avatar    =4;
+    int32    Id=1;
+    string   Name      =2;  	
+    string   Gender    =3;
+	string   Birthday  =4;
+	string   Avatar    =5;
 }
 
 
 
 message createCardRequest {
-    int32 user_id =2;
-    string Bankname = 1;
+    int32  user_id =1;
+    string Bankname = 2;
     string serial =3;
 }
 
