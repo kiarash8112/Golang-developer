@@ -17,6 +17,7 @@ import (
 	"github.com/gorilla/mux"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 )
 
 //this package act like simple api gateway
@@ -41,7 +42,12 @@ func main() {
 		//Read
 		//grpc call
 		fmt.Println("user get all client")
-		cc, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+		cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+		if err != nil {
+			fmt.Println(err)
+		}
+		opt := grpc.WithTransportCredentials(cred)
+		cc, err := grpc.Dial("localhost:50051", opt)
 		if err != nil {
 			log.Fatalf("could not connect: %v", err)
 		}
@@ -58,7 +64,12 @@ func main() {
 		id_int, _ := strconv.ParseInt(id_str, 10, 64)
 		//grpc call
 		fmt.Println("user getby id")
-		cc, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+		cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+		if err != nil {
+			fmt.Println(err)
+		}
+		opt := grpc.WithTransportCredentials(cred)
+		cc, err := grpc.Dial("localhost:50051", opt)
 		if err != nil {
 			log.Fatalf("could not connect: %v", err)
 		}
@@ -82,8 +93,13 @@ func main() {
 
 		w.Write([]byte(fmt.Sprintf("created %+v", user)))
 		//grpc call
+		cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+		if err != nil {
+			fmt.Println(err)
+		}
+		opt := grpc.WithTransportCredentials(cred)
 		fmt.Println("Create Create-User Client")
-		cc, err := grpc.Dial("localhost:50052", grpc.WithInsecure())
+		cc, err := grpc.Dial("localhost:50052", opt)
 		if err != nil {
 			log.Fatalf("could not connect: %v", err)
 		}
@@ -107,7 +123,12 @@ func main() {
 		}
 		//grpc call
 		fmt.Println(" Client")
-		cc, err := grpc.Dial("localhost:50052", grpc.WithInsecure())
+		cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+		if err != nil {
+			fmt.Println(err)
+		}
+		opt := grpc.WithTransportCredentials(cred)
+		cc, err := grpc.Dial("localhost:50052", opt)
 		if err != nil {
 			log.Fatalf("could not connect: %v", err)
 		}
@@ -130,7 +151,12 @@ func main() {
 		}
 		//grpc call
 		fmt.Println("Update User Client")
-		cc, err := grpc.Dial("localhost:50053", grpc.WithInsecure())
+		cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+		if err != nil {
+			fmt.Println(err)
+		}
+		opt := grpc.WithTransportCredentials(cred)
+		cc, err := grpc.Dial("localhost:50053", opt)
 		if err != nil {
 			log.Fatalf("could not connect: %v", err)
 		}
@@ -152,7 +178,12 @@ func main() {
 		}
 		//grpc call
 		fmt.Println("Update User Client")
-		cc, err := grpc.Dial("localhost:50053", grpc.WithInsecure())
+		cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+		if err != nil {
+			fmt.Println(err)
+		}
+		opt := grpc.WithTransportCredentials(cred)
+		cc, err := grpc.Dial("localhost:50053", opt)
 		if err != nil {
 			log.Fatalf("could not connect: %v", err)
 		}
@@ -284,8 +315,12 @@ func Update_user(c updatepb.CrudServiceClient, user User) {
 }
 func Delete_Card(id int32) {
 	fmt.Println("Starting to Delete user...")
-
-	cc, err := grpc.Dial("localhost:50054", grpc.WithInsecure())
+	cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+	if err != nil {
+		fmt.Println(err)
+	}
+	opt := grpc.WithTransportCredentials(cred)
+	cc, err := grpc.Dial("localhost:50054", opt)
 	if err != nil {
 		log.Fatalf("could not connect: %v", err)
 	}
@@ -305,7 +340,12 @@ func Delete_Card(id int32) {
 func Delete_User(id int32) {
 	fmt.Println("Starting to Delete user...")
 
-	cc, err := grpc.Dial("localhost:50054", grpc.WithInsecure())
+	cred, err := credentials.NewClientTLSFromFile("ssl/ca.crt", "")
+	if err != nil {
+		fmt.Println(err)
+	}
+	opt := grpc.WithTransportCredentials(cred)
+	cc, err := grpc.Dial("localhost:50054", opt)
 	if err != nil {
 		log.Fatalf("could not connect: %v", err)
 	}

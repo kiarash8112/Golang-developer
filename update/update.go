@@ -9,6 +9,7 @@ import (
 	"v0/updatepb"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -88,7 +89,12 @@ func main() {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 
-	s := grpc.NewServer()
+	creds, err := credentials.NewServerTLSFromFile("ssl/server.crt", "ssl/server.pem")
+	if err != nil {
+		fmt.Println(err)
+	}
+	opt := grpc.Creds(creds)
+	s := grpc.NewServer(opt)
 	updatepb.RegisterCrudServiceServer(s, &server{})
 
 	// Register reflection service on gRPC server.

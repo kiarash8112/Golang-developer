@@ -9,6 +9,7 @@ import (
 	"v0/domain"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -76,7 +77,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
-
+	creds, err := credentials.NewServerTLSFromFile("ssl/server.crt", "ssl/server.pem")
 	s := grpc.NewServer()
 	deletepb.RegisterCrudServiceServer(s, &server{})
 
